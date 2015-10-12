@@ -1,0 +1,14 @@
+{
+  "name": "buzzdeee-dhcrelay",
+  "version": "0.1.0",
+  "author": "buzzdeee",
+  "summary": "A puppet module to manage dhcrelay",
+  "license": "Apache-2.0",
+  "source": "https://github.com/buzzdeee/buzzdeee-dhcrelay.git",
+  "project_page": "https://github.com/buzzdeee/buzzdeee-dhcrelay",
+  "issues_url": "https://github.com/buzzdeee/buzzdeee-dhcrelay/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
