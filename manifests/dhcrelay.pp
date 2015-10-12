@@ -47,8 +47,8 @@ define dhcrelay::dhcrelay (
     $tmp = regsubst($title, '[/ ]', '_', 'G')
     $service_name = "dhcrelay_${tmp}"
     exec { "cp dhcrelay dhcrelay_${service_name}":
-      command => "/bin/cp /etc/rc.d/dhcrelay /etc/rc.d/dhcrelay_${service_name}",
-      creates => "/etc/rc.d/dhcrelay_${service_name}",
+      command => "/bin/cp /etc/rc.d/dhcrelay /etc/rc.d/${service_name}",
+      creates => "/etc/rc.d/${service_name}",
       before  => Service[$service_name],
     }
   }
