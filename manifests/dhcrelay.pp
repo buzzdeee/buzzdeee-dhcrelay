@@ -29,13 +29,33 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Sebastian Reitenbach <sebastia@l00-bugdead-prods.de>
 #
 # === Copyright
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class dhcrelay {
+define dhcrelay::dhcrelay (
+  $ensure = 'running',
+  $enable = true,
+  $flags  = undef,
+){
 
+  if $title == 'dhcrelay' {
+    $service_name = $title
+  } else {
+    $tmp = regsubst($title, '[/ ]', '_', 'G')
+    $service_name = "dhcrelay_${tmp}"
+    exec { "cp dhcrelay dhcrelay_${service_name}":
+      command => "/bin/cp /etc/rc.d/dhcrelay /etc/rc.d/dhcrelay_${service_name}",
+      creates => "/etc/rc.d/dhcrelay_${service_name}",
+      before  => Service[$service_name],
+    }
+  }
 
+  service { $service_name:
+    ensure => $ensure,
+    enable => $enable,
+    flags  => $flags,
+  }
 }
